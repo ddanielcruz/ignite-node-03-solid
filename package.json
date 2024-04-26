@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "tsup src/server.ts --minify --clean --out-dir dist",
-    "dev": "tsx --watch --env-file=.env.local src/server.ts",
+    "dev": "tsx watch --env-file=.env.local src/server.ts",
     "lint": "eslint --ext .ts src/ --fix",
     "start": "node dist/server.js"
   },

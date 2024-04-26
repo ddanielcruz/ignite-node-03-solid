@@ -1,0 +1,20 @@
+{
+  "name": "ignite-node-03-solid",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsup src/server.ts --minify --clean --out-dir dist",
+    "dev": "tsx watch src/server.ts",
+    "start": "node dist/server.js"
+  },
+  "devDependencies": {
+    "@types/node": "20.12.7",
+    "tsup": "8.0.2",
+    "tsx": "4.7.3",
+    "typescript": "5.4.5"
+  },
+  "dependencies": {
+    "fastify": "4.26.2"
+  }
+}

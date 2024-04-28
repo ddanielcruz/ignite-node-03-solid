@@ -7,7 +7,9 @@
     "build": "tsup src/server.ts --minify --clean --out-dir dist",
     "dev": "tsx watch --env-file=.env src/server.ts",
     "lint": "eslint --ext .ts src/ --fix",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@prisma/client": "5.13.0",
@@ -24,6 +26,8 @@
     "prisma": "5.13.0",
     "tsup": "8.0.2",
     "tsx": "4.7.3",
-    "typescript": "5.4.5"
+    "typescript": "5.4.5",
+    "vite-tsconfig-paths": "4.3.2",
+    "vitest": "1.5.2"
   }
 }

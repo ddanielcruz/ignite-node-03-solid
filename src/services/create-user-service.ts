@@ -23,11 +23,13 @@ export class CreateUserService {
     const passwordSalt = await bcrypt.genSalt(env.PASSWORD_SALT_ROUNDS)
     const passwordHash = await bcrypt.hash(password, passwordSalt)
 
-    await this.usersRepository.create({
+    const user = await this.usersRepository.create({
       name,
       email,
       passwordHash,
       passwordSalt,
     })
+
+    return { user }
   }
 }

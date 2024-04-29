@@ -1,9 +1,6 @@
 import type { User } from '@prisma/client'
 
-export type CreateUserData = Pick<
-  User,
-  'name' | 'email' | 'passwordHash' | 'passwordSalt'
->
+export type CreateUserData = Pick<User, 'name' | 'email' | 'passwordHash'>
 
 export interface UsersRepository {
   create(data: CreateUserData): Promise<User>

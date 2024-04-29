@@ -27,7 +27,6 @@ export class CreateUserService {
       name,
       email,
       passwordHash,
-      passwordSalt,
     })
 
     return { user }

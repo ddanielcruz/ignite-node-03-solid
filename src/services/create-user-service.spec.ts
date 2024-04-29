@@ -24,7 +24,6 @@ describe('CreateUserService', () => {
 
     expect(user.passwordHash).not.toBe(password)
     expect(user.passwordHash).toBeTruthy()
-    expect(user.passwordSalt).toBeTruthy()
 
     const isPasswordCorrectlyHashed = await compare(password, user.passwordHash)
     expect(isPasswordCorrectlyHashed).toBe(true)

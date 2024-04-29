@@ -21,6 +21,7 @@
     "@rocketseat/eslint-config": "2.2.2",
     "@types/bcryptjs": "2.4.6",
     "@types/node": "20.12.7",
+    "dotenv": "16.4.5",
     "eslint": "8",
     "eslint-plugin-simple-import-sort": "12.1.0",
     "prisma": "5.13.0",

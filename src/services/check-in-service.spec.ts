@@ -1,9 +1,9 @@
-import { Prisma } from '@prisma/client'
-
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
 import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-repository'
 
 import { CheckInRequest, CheckInService } from './check-in-service'
+import { MaxDistanceError } from './errors/max-distance-error'
+import { MaxNumberOfCheckInsError } from './errors/max-number-of-check-ins-error'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 let sut: CheckInService
@@ -22,18 +22,18 @@ describe('CheckInService', () => {
     vi.useFakeTimers()
   })
 
-  beforeEach(() => {
+  beforeEach(async () => {
     checkInRepository = new InMemoryCheckInsRepository()
     gymsRepository = new InMemoryGymsRepository()
     sut = new CheckInService(checkInRepository, gymsRepository)
 
-    gymsRepository.gyms.push({
+    await gymsRepository.create({
       id: 'gym-id',
       name: 'SmartFit',
       phone: null,
       description: null,
-      latitude: new Prisma.Decimal(-30.0270561),
-      longitude: new Prisma.Decimal(-51.1895766),
+      latitude: -30.0270561,
+      longitude: -51.1895766,
     })
   })
 
@@ -59,7 +59,7 @@ describe('CheckInService', () => {
 
     const promise = sut.execute(request)
 
-    await expect(promise).rejects.toThrow(Error)
+    await expect(promise).rejects.toThrow(MaxNumberOfCheckInsError)
   })
 
   it('should be able to check in twice but in different days', async () => {
@@ -82,6 +82,6 @@ describe('CheckInService', () => {
       userLongitude: 0,
     })
 
-    await expect(promise).rejects.toThrow(Error)
+    await expect(promise).rejects.toThrow(MaxDistanceError)
   })
 })

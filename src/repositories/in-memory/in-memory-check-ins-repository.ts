@@ -10,6 +10,10 @@ import type {
 export class InMemoryCheckInsRepository implements CheckInsRepository {
   checkIns: CheckIn[] = []
 
+  async countByUserId(userId: string): Promise<number> {
+    return this.checkIns.filter((checkIn) => checkIn.userId === userId).length
+  }
+
   async create(data: CreateCheckInData): Promise<CheckIn> {
     const checkIn: CheckIn = {
       ...data,
@@ -34,5 +38,11 @@ export class InMemoryCheckInsRepository implements CheckInsRepository {
     )
 
     return checkIn ?? null
+  }
+
+  async findManyByUserId(userId: string, page = 1): Promise<CheckIn[]> {
+    return this.checkIns
+      .filter((checkIn) => checkIn.userId === userId)
+      .slice((page - 1) * 20, page * 20)
   }
 }

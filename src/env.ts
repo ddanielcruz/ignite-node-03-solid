@@ -6,6 +6,7 @@ const envSchema = z.object({
     .default('development'),
   PORT: z.coerce.number().default(3333),
   PASSWORD_SALT_ROUNDS: z.coerce.number().default(12),
+  JWT_SECRET: z.string(),
 })
 
 export type Env = z.infer<typeof envSchema>

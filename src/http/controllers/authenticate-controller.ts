@@ -4,16 +4,16 @@ import { z } from 'zod'
 import { InvalidCredentialsError } from '@/services/errors/invalid-credentials-error'
 import { makeAuthenticateService } from '@/services/factories/make-authenticate-service'
 
-const signInBodySchema = z.object({
+const authenticateBodySchema = z.object({
   email: z.string().email(),
   password: z.string(),
 })
 
-export async function signInController(
+export async function authenticateController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
-  const body = signInBodySchema.parse(request.body)
+  const body = authenticateBodySchema.parse(request.body)
   const authenticateService = makeAuthenticateService()
 
   try {

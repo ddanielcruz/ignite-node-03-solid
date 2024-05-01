@@ -4,17 +4,17 @@ import { z } from 'zod'
 import { UserAlreadyExistsError } from '@/services/errors/user-already-exists-error'
 import { makeCreateUserService } from '@/services/factories/make-create-user-service'
 
-const signUpBodySchema = z.object({
+const registerBodySchema = z.object({
   name: z.string(),
   email: z.string().email(),
   password: z.string().min(6),
 })
 
-export async function signUpController(
+export async function registerController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
-  const body = signUpBodySchema.parse(request.body)
+  const body = registerBodySchema.parse(request.body)
   const createUserService = makeCreateUserService()
 
   try {

@@ -12,7 +12,7 @@ describe('Sign Up (e2e)', () => {
   })
 
   it('should be able to sign up', async () => {
-    const response = await request(app.server).post('/sign-up').send({
+    const response = await request(app.server).post('/users').send({
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: 'john.doe',

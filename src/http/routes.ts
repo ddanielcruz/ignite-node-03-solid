@@ -1,13 +1,13 @@
 import { FastifyInstance } from 'fastify'
 
+import { authenticateController } from './controllers/authenticate-controller'
 import { profileController } from './controllers/profile-controller'
-import { signInController } from './controllers/sign-in-controller'
-import { signUpController } from './controllers/sign-up-controller'
+import { registerController } from './controllers/register-controller'
 import { verifyJwt } from './middleware/verify-jwt'
 
 export async function routes(app: FastifyInstance) {
-  app.post('/sign-in', signInController)
-  app.post('/sign-up', signUpController)
+  app.post('/sessions', authenticateController)
+  app.post('/users', registerController)
 
   // Authenticated
   app.get('/users/me', { onRequest: verifyJwt }, profileController)

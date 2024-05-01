@@ -10,5 +10,5 @@ export async function routes(app: FastifyInstance) {
   app.post('/sign-up', signUpController)
 
   // Authenticated
-  app.get('/me', { onRequest: verifyJwt }, profileController)
+  app.get('/users/me', { onRequest: verifyJwt }, profileController)
 }

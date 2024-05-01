@@ -8,8 +8,10 @@
     "dev": "tsx watch --env-file=.env src/server.ts",
     "lint": "eslint --ext .ts src/ --fix",
     "start": "node dist/server.js",
-    "test": "vitest run",
-    "test:watch": "vitest",
+    "test": "vitest run --dir src/services --passWithNoTests",
+    "test:watch": "vitest watch --dir src/services --passWithNoTests",
+    "test:e2e": "vitest run --dir src/http --passWithNoTests",
+    "test:e2e:watch": "vitest watch --dir src/http --passWithNoTests",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui"
   },

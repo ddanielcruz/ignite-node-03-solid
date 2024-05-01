@@ -9,6 +9,12 @@ export default defineConfig({
       ...config().parsed,
       ...config({ path: './.env.test' }).parsed,
     },
+    environmentMatchGlobs: [
+      [
+        'src/http/controllers/**/*.spec.ts',
+        './prisma/vitest-test-environment.ts',
+      ],
+    ],
   },
   plugins: [tsconfigPaths()],
 })

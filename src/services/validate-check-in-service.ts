@@ -13,9 +13,9 @@ export type ValidateCheckInRequest = {
 export class ValidateCheckInService {
   constructor(private readonly checkInsRepository: CheckInsRepository) {}
 
-  async execute({ checkInId }: ValidateCheckInRequest) {
+  async execute({ userId, checkInId }: ValidateCheckInRequest) {
     const checkIn = await this.checkInsRepository.findById(checkInId)
-    if (!checkIn) {
+    if (!checkIn || checkIn.userId !== userId) {
       throw new ResourceNotFoundError()
     }
 

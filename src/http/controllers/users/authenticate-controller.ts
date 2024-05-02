@@ -18,9 +18,12 @@ export async function authenticateController(
 
   try {
     const { user } = await authenticateService.execute(body)
-    const accessToken = await reply.jwtSign({}, { sign: { sub: user.id } })
+    const accessToken = await reply.jwtSign(
+      { role: user.role },
+      { sign: { sub: user.id } },
+    )
     const refreshToken = await reply.jwtSign(
-      {},
+      { role: user.role },
       { sign: { sub: user.id, expiresIn: '7d' } },
     )
 

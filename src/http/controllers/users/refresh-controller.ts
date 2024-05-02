@@ -10,10 +10,10 @@ export async function refreshController(
     return reply.status(401).send({ message: 'Unauthorized.' })
   }
 
-  const { sub } = request.user
-  const accessToken = await reply.jwtSign({}, { sign: { sub } })
+  const { sub, role } = request.user
+  const accessToken = await reply.jwtSign({ role }, { sign: { sub } })
   const refreshToken = await reply.jwtSign(
-    {},
+    { role },
     { sign: { sub, expiresIn: '7d' } },
   )
 
